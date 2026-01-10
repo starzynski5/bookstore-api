@@ -1,0 +1,14 @@
+﻿using BookStoreAPI.DTOs;
+using BookStoreAPI.Models;
+
+namespace BookStoreAPI.Interfaces
+{
+    public interface IUserService
+    {
+        Task<ServiceResponse<User>> CreateUser(User userData);
+
+        Task<List<User>> GetAllUsers();
+
+        Task<ServiceResponse<User>> GetUserById(int id);
+    }
+}
