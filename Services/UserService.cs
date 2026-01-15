@@ -81,5 +81,71 @@ namespace BookStoreAPI.Services
 
             return response;
         }
+
+        public async Task<ServiceResponse<User>> UpdateUser(int id, User updatedUserData)
+        {
+            ServiceResponse<User> response = new ServiceResponse<User>();
+
+            User user = await _context.Users
+                .Where(u => u.Id == id)
+                .FirstOrDefaultAsync();
+
+            if (user == null)
+            {
+                response.Success = false;
+                response.Message = "User with this id was not found.";
+                return response;
+            }
+
+            if (updatedUserData.Username != user.Username && updatedUserData.Username != null)
+            {
+                user.Username = updatedUserData.Username;
+            }
+
+            if (updatedUserData.Email != user.Email && updatedUserData.Email != null)
+            {
+                user.Email = updatedUserData.Email;
+            }
+
+            if (updatedUserData.Password != user.Password && updatedUserData.Password != null)
+            {
+                user.Password = updatedUserData.Password;
+            }
+
+            _context.Users.Update(user);
+            await _context.SaveChangesAsync();
+
+            response.Success = true;
+            response.Message = "User updated successfully.";
+            response.Data = user;
+
+            return response;
+
+        }
+
+        public async Task<ServiceResponse<User>> DeleteUser(int id)
+        {
+            ServiceResponse<User> response = new ServiceResponse<User>();
+
+            User user = await _context.Users
+                .Where(u => u.Id == id)
+                .FirstOrDefaultAsync();
+
+            if (user == null)
+            {
+                response.Success = false;
+                response.Message = "User with this id was not found.";
+                return response;
+            }
+
+            _context.Users.Remove(user);
+            await _context.SaveChangesAsync();
+
+            response.Success = true;
+            response.Message = "User deleted successfully.";
+            response.Data = user;
+
+            return response;
+        }
     }
 }

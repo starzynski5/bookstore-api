@@ -10,5 +10,9 @@ namespace BookStoreAPI.Interfaces
         Task<List<User>> GetAllUsers();
 
         Task<ServiceResponse<User>> GetUserById(int id);
+
+        Task<ServiceResponse<User>> UpdateUser(int id, User updatedUserData);
+
+        Task<ServiceResponse<User>> DeleteUser(int id);
     }
 }

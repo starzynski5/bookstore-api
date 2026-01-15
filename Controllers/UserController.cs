@@ -53,5 +53,35 @@ namespace BookStoreAPI.Controllers
 
             return Ok(response.Data);
         }
+
+        [HttpPut("{id}")]
+        public async Task<IActionResult> UpdateUser(int id, [FromBody] User updatedUserData)
+        {
+            if (id == 0 || updatedUserData == null) return BadRequest();
+
+            ServiceResponse<User> response = await userService.UpdateUser(id, updatedUserData);
+
+            if (response.Success == false)
+            {
+                return BadRequest(response.Message);
+            }
+
+            return Ok(response.Message);
+        }
+
+        [HttpDelete("{id}")]
+        public async Task<IActionResult> DeleteUser(int id)
+        {
+            if (id == 0) return BadRequest();
+
+            ServiceResponse<User> response = await userService.DeleteUser(id);
+
+            if (response.Success == false)
+            {
+                return BadRequest(response.Message);
+            }
+
+            return Ok(response.Message);
+        }
     }
 }
