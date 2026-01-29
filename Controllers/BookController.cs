@@ -1,6 +1,7 @@
 ﻿using BookStoreAPI.DTOs;
 using BookStoreAPI.Interfaces;
 using BookStoreAPI.Models;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace BookStoreAPI.Controllers
@@ -17,6 +18,7 @@ namespace BookStoreAPI.Controllers
         }
 
         [HttpGet]
+        [AllowAnonymous]
         public async Task<IActionResult> GetAllBooks()
         {
             ServiceResponse<List<Book>> response = await bookService.GetAllBooks();
@@ -25,6 +27,7 @@ namespace BookStoreAPI.Controllers
         }
 
         [HttpGet("{id}")]
+        [AllowAnonymous]
         public async Task<IActionResult> GetBookById(int id)
         {
             if (id == 0) return BadRequest();
@@ -40,6 +43,7 @@ namespace BookStoreAPI.Controllers
         }
 
         [HttpPost]
+        [Authorize(Roles = "Admin")]
         public async Task<IActionResult> CreateBook([FromBody] CreateBookDTO book)
         {
             if (book == null) return BadRequest();
@@ -55,6 +59,7 @@ namespace BookStoreAPI.Controllers
         }
 
         [HttpPut("{id}")]
+        [Authorize(Roles = "Admin")]
         public async Task<IActionResult> UpdateBook([FromBody] CreateBookDTO updatedBook, int id)
         {
             if (updatedBook == null) return BadRequest();
@@ -70,6 +75,7 @@ namespace BookStoreAPI.Controllers
         }
 
         [HttpDelete("{id}")]
+        [Authorize(Roles = "Admin")]
         public async Task<IActionResult> DeleteBook(int id)
         {
             if (id == 0) return BadRequest();

@@ -1,6 +1,7 @@
 ﻿using BookStoreAPI.DTOs;
 using BookStoreAPI.Interfaces;
 using BookStoreAPI.Models;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace BookStoreAPI.Controllers
@@ -17,6 +18,7 @@ namespace BookStoreAPI.Controllers
         }
 
         [HttpPost]
+        [Authorize(Roles = "Admin")]
         public async Task<IActionResult> CreateCategory([FromBody] Category category)
         {
             if (category == null)
@@ -35,6 +37,7 @@ namespace BookStoreAPI.Controllers
         }
 
         [HttpGet]
+        [AllowAnonymous]
         public async Task<IActionResult> GetAllCategories()
         {
             ServiceResponse<List<Category>> response = await categoryService.GetAllCategories();
@@ -43,6 +46,7 @@ namespace BookStoreAPI.Controllers
         }
 
         [HttpGet("{id}")]
+        [AllowAnonymous]
         public async Task<IActionResult> GetCategoryById(int id)
         {
             if (id == 0) return BadRequest();
@@ -58,6 +62,7 @@ namespace BookStoreAPI.Controllers
         }
 
         [HttpPut("{id}")]
+        [Authorize(Roles = "Admin")]
         public async Task<IActionResult> UpdateCategory([FromBody] Category updatedCategory, int id)
         {
             if (id == 0) return BadRequest();
@@ -73,6 +78,7 @@ namespace BookStoreAPI.Controllers
         }
 
         [HttpDelete("{id}")]
+        [Authorize(Roles = "Admin")]
         public async Task<IActionResult> DeleteCategory(int id)
         {
             if (id == 0) return BadRequest();

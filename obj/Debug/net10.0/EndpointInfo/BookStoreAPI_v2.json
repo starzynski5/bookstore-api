@@ -1,8 +1,8 @@
 {
   "openapi": "3.0.1",
   "info": {
-    "title": "bookstore-api",
-    "version": "v1"
+    "title": "dyspo_api_v2",
+    "version": "v2"
   },
   "paths": {
     "/api/Auth/register": {
