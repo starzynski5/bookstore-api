@@ -3,6 +3,7 @@ using BookStoreAPI.Interfaces;
 using BookStoreAPI.Models;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using Swashbuckle.AspNetCore.Annotations;
 
 namespace BookStoreAPI.Controllers
 {
@@ -19,7 +20,7 @@ namespace BookStoreAPI.Controllers
 
         [HttpPost]
         [Authorize(Roles = "Admin")]
-        public async Task<IActionResult> CreateCategory([FromBody] Category category)
+        public async Task<IActionResult> CreateCategory([FromBody] CreateCategoryDTO category)
         {
             if (category == null)
             {

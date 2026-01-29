@@ -201,17 +201,17 @@
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/components/schemas/Category"
+                "$ref": "#/components/schemas/CreateCategoryDTO"
               }
             },
             "text/json": {
               "schema": {
-                "$ref": "#/components/schemas/Category"
+                "$ref": "#/components/schemas/CreateCategoryDTO"
               }
             },
             "application/*+json": {
               "schema": {
-                "$ref": "#/components/schemas/Category"
+                "$ref": "#/components/schemas/CreateCategoryDTO"
               }
             }
           }
@@ -528,6 +528,16 @@
           "categoryId": {
             "type": "integer",
             "format": "int32"
+          }
+        },
+        "additionalProperties": false
+      },
+      "CreateCategoryDTO": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string",
+            "nullable": true
           }
         },
         "additionalProperties": false

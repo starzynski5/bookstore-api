@@ -5,7 +5,7 @@ namespace BookStoreAPI.Interfaces
 {
     public interface ICategoryService
     {
-        Task<ServiceResponse<Category>> CreateCategory(Category categoryData);
+        Task<ServiceResponse<Category>> CreateCategory(CreateCategoryDTO categoryData);
 
         Task<ServiceResponse<List<Category>>> GetAllCategories();
 

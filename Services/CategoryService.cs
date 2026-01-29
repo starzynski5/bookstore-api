@@ -16,7 +16,7 @@ namespace BookStoreAPI.Services
             _context = context;
         }
 
-        public async Task<ServiceResponse<Category>> CreateCategory(Category categoryData)
+        public async Task<ServiceResponse<Category>> CreateCategory(CreateCategoryDTO categoryData)
         {
             ServiceResponse<Category> response = new ServiceResponse<Category>();
             
