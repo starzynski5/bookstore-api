@@ -47,11 +47,25 @@ namespace BookStoreAPI.Services
             return response;
         }
 
-        public async Task<ServiceResponse<List<Category>>> GetAllCategories()
+        public async Task<ServiceResponse<List<CategoryResponseDTO>>> GetAllCategories()
         {
-            List<Category> categories = await _context.Categories.ToListAsync();
+            List<CategoryResponseDTO> categories = await _context.Categories
+                .Select(c => new CategoryResponseDTO
+                {
+                    Id = c.Id,
+                    Name = c.Name,
+                    Books = c.Books.Select(b => new BookInCategoryDTO
+                    {
+                        Id = b.Id,
+                        Title = b.Title,
+                        Author = b.Author,
+                        Content = b.Content,
+                        CoverLink = b.CoverLink
+                    }).ToList()
+                })
+                .ToListAsync();
 
-            ServiceResponse<List<Category>> response = new ServiceResponse<List<Category>>();
+            ServiceResponse<List<CategoryResponseDTO>> response = new ServiceResponse<List<CategoryResponseDTO>>();
 
             response.Success = true;
             response.Data = categories;

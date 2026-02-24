@@ -19,7 +19,7 @@ namespace BookStoreAPI.Controllers
         }
 
         [HttpPost]
-        [Authorize(Roles = "Admin")]
+        
         public async Task<IActionResult> CreateCategory([FromBody] CreateCategoryDTO category)
         {
             if (category == null)
@@ -41,7 +41,7 @@ namespace BookStoreAPI.Controllers
         [AllowAnonymous]
         public async Task<IActionResult> GetAllCategories()
         {
-            ServiceResponse<List<Category>> response = await categoryService.GetAllCategories();
+            ServiceResponse<List<CategoryResponseDTO>> response = await categoryService.GetAllCategories();
 
             return Ok(response.Data);
         }

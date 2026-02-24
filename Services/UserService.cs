@@ -23,7 +23,6 @@ namespace BookStoreAPI.Services
                 .Where(u => u.Username == userData.Username)
                 .AnyAsync();
 
-
             bool isExistingEmail = await _context.Users
                 .Where(u => u.Email == userData.Email)
                 .AnyAsync();

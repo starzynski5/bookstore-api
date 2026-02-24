@@ -37,6 +37,17 @@ builder.Services.AddAuthentication(options =>
     };
 });
 
+builder.Services.AddCors(options =>
+{
+    options.AddPolicy("AllowNext", policy =>
+    {
+        policy.WithOrigins("http://localhost:3000")
+              .AllowAnyHeader()
+              .AllowAnyMethod();
+    });
+});
+
+
 builder.Services.AddAuthorization();
 
 
@@ -85,6 +96,8 @@ builder.Services.AddSwaggerGen(options =>
 
 
 var app = builder.Build();
+
+app.UseCors("AllowNext");
 
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())

@@ -7,7 +7,7 @@ namespace BookStoreAPI.Interfaces
     {
         Task<ServiceResponse<Category>> CreateCategory(CreateCategoryDTO categoryData);
 
-        Task<ServiceResponse<List<Category>>> GetAllCategories();
+        Task<ServiceResponse<List<CategoryResponseDTO>>> GetAllCategories();
 
         Task<ServiceResponse<Category>> GetCategoryById(int id);
 
