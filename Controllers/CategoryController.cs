@@ -19,7 +19,7 @@ namespace BookStoreAPI.Controllers
         }
 
         [HttpPost]
-        
+        [Authorize(Roles = "Admin")]
         public async Task<IActionResult> CreateCategory([FromBody] CreateCategoryDTO category)
         {
             if (category == null)
