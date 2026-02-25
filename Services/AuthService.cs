@@ -68,14 +68,14 @@ namespace BookStoreAPI.Services
             ServiceResponse<string> response = new ServiceResponse<string>();
 
             User user = await _context.Users
-                .Where(u => u.Username.ToLower() == request.Username.ToLower()
+                .Where(u => u.Email.ToLower() == request.Email.ToLower()
                          && u.Password == request.Password)
                 .FirstOrDefaultAsync();
 
             if (user == null)
             {
                 response.Success = false;
-                response.Message = "Invalid username or password.";
+                response.Message = "Invalid email or password.";
 
                 return response;
             }
