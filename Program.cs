@@ -4,6 +4,7 @@ using BookStoreAPI.Services;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
+using System;
 using System.Reflection;
 using System.Text;
 
@@ -36,6 +37,8 @@ builder.Services.AddAuthentication(options =>
         )
     };
 });
+
+
 
 builder.Services.AddCors(options =>
 {

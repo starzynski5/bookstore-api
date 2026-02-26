@@ -5,6 +5,9 @@ using BookStoreAPI.Models;
 using Microsoft.AspNetCore.Http.HttpResults;
 using Microsoft.AspNetCore.ResponseCaching;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.IdentityModel.Logging;
+using Slugify;
+using System;
 
 namespace BookStoreAPI.Services
 {
@@ -75,13 +78,16 @@ namespace BookStoreAPI.Services
                 return response;
             }
 
+            var slugHelper = new SlugHelper();
+
             Book newBook = new Book
             {
                 Title = book.Title,
                 Author = book.Author,
                 Content = book.Content,
                 CoverLink = book.CoverLink,
-                CategoryId = book.CategoryId
+                CategoryId = book.CategoryId,
+                Url = slugHelper.GenerateSlug(book.Title)
             };
 
             _context.Books.Add(newBook);
@@ -136,11 +142,14 @@ namespace BookStoreAPI.Services
                 return response;
             }
 
+            var slugHelper = new SlugHelper();
+
             book.Author = updatedBook.Author;
             book.CoverLink = updatedBook.CoverLink;
             book.Content = updatedBook.Content;
             book.Title = updatedBook.Title;
             book.CategoryId = updatedBook.CategoryId;
+            book.Url = slugHelper.GenerateSlug(book.Title);
 
             await _context.SaveChangesAsync();
 

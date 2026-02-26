@@ -68,6 +68,10 @@
               "target": "Package",
               "version": "[10.0.1, )"
             },
+            "Slugify": {
+              "target": "Package",
+              "version": "[0.1.0.20570, )"
+            },
             "Swashbuckle.AspNetCore": {
               "target": "Package",
               "version": "[6.6.2, )"
