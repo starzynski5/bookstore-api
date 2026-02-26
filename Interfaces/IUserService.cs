@@ -14,5 +14,7 @@ namespace BookStoreAPI.Interfaces
         Task<ServiceResponse<User>> UpdateUser(int id, User updatedUserData);
 
         Task<ServiceResponse<User>> DeleteUser(int id);
+
+        Task<ServiceResponse<string>> SubscribeToBook(int userId, int bookId);
     }
 }

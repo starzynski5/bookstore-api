@@ -146,5 +146,53 @@ namespace BookStoreAPI.Services
 
             return response;
         }
+
+        public async Task<ServiceResponse<string>> SubscribeToBook(int userId, int bookId)
+        {
+            ServiceResponse<string> response = new ServiceResponse<string>();
+
+            User isUserExisting = await _context.Users
+                .Where(u => u.Id == userId)
+                .FirstOrDefaultAsync();
+
+            Book book = await _context.Books
+                .Where(b => b.Id == bookId)
+                .FirstOrDefaultAsync();
+
+            if (isUserExisting == null || book == null)
+            {
+                response.Success = false;
+                response.Message = "User or Book with this id was not found.";
+            }
+
+            User user = await _context.Users
+                .Where(u => u.Id == userId)
+                .Include(u => u.UserBooks)
+                .FirstOrDefaultAsync();
+
+            if (user.UserBooks.Any(ub => ub.BookId == bookId))
+            {
+                response.Success = false;
+                response.Message = "User is already subscribed to this book.";
+                return response;
+            }
+
+            UserBook userBook = new UserBook
+            {
+                UserId = userId,
+                BookId = bookId,
+                Progress = 0,
+                LastTimeRead = DateTime.UtcNow
+            };
+
+            _context.UserBooks.Add(userBook);
+            await _context.SaveChangesAsync();
+
+            response.Success = true;
+            response.Message = "User subscribed to book successfully.";
+
+            return response;
+
+        }
     }
 }

@@ -169,5 +169,5 @@ C:\Users\patry_4tqi0sq\Desktop\APIs\BookStoreAPI\BookStoreAPI\obj\Debug\net10.0\
 C:\Users\patry_4tqi0sq\Desktop\APIs\BookStoreAPI\BookStoreAPI\obj\Debug\net10.0\BookStoreAPI.pdb
 C:\Users\patry_4tqi0sq\Desktop\APIs\BookStoreAPI\BookStoreAPI\obj\Debug\net10.0\BookStoreAPI.genruntimeconfig.cache
 C:\Users\patry_4tqi0sq\Desktop\APIs\BookStoreAPI\BookStoreAPI\obj\Debug\net10.0\ref\BookStoreAPI.dll
-C:\Users\patry_4tqi0sq\Desktop\APIs\BookStoreAPI\BookStoreAPI\obj\Debug\net10.0\staticwebassets.upToDateCheck.txt
 C:\Users\patry_4tqi0sq\Desktop\APIs\BookStoreAPI\BookStoreAPI\bin\Debug\net10.0\Slugify.dll
+C:\Users\patry_4tqi0sq\Desktop\APIs\BookStoreAPI\BookStoreAPI\obj\Debug\net10.0\staticwebassets.upToDateCheck.txt

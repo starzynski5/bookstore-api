@@ -283,5 +283,21 @@
       }
     ],
     "ReturnTypes": []
+  },
+  {
+    "ContainingType": "BookStoreAPI.Controllers.UserController",
+    "Method": "SubscribeToBook",
+    "RelativePath": "api/User/subscribe/{id}",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
   }
 ]
