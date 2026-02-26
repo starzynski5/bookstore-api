@@ -532,6 +532,10 @@
           "categoryId": {
             "type": "integer",
             "format": "int32"
+          },
+          "url": {
+            "type": "string",
+            "nullable": true
           }
         },
         "additionalProperties": false

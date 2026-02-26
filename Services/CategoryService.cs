@@ -60,7 +60,8 @@ namespace BookStoreAPI.Services
                         Title = b.Title,
                         Author = b.Author,
                         Content = b.Content,
-                        CoverLink = b.CoverLink
+                        CoverLink = b.CoverLink,
+                        Url = b.Url
                     }).ToList()
                 })
                 .ToListAsync();
@@ -73,13 +74,28 @@ namespace BookStoreAPI.Services
             return response;
         }
 
-        public async Task<ServiceResponse<Category>> GetCategoryById(int id)
+        public async Task<ServiceResponse<CategoryResponseDTO>> GetCategoryById(int id)
         {
-            ServiceResponse<Category> response = new ServiceResponse<Category>();
-            
+            ServiceResponse<CategoryResponseDTO> response = new ServiceResponse<CategoryResponseDTO>();
+
             Category category = await _context.Categories
                 .Where(c => c.Id == id)
                 .FirstOrDefaultAsync();
+
+            CategoryResponseDTO crDTO = new CategoryResponseDTO
+            {
+                Id = category.Id,
+                Name = category.Name,
+                Books = category.Books.Select(b => new BookInCategoryDTO
+                {
+                    Id = b.Id,
+                    Title = b.Title,
+                    Author = b.Author,
+                    Content = b.Content,
+                    CoverLink = b.CoverLink,
+                    Url = b.Url
+                }).ToList()
+            };
 
             if (category == null)
             {
@@ -89,7 +105,7 @@ namespace BookStoreAPI.Services
             }
 
             response.Success = true;
-            response.Data = category;
+            response.Data = crDTO;
 
             return response;
         }

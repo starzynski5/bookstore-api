@@ -7,5 +7,6 @@
         public string Content { get; set; }
         public string CoverLink { get; set; }
         public int CategoryId { get; set; }
+        public string Url { get; set; }
     }
 }

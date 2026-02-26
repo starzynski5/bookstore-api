@@ -9,7 +9,7 @@ namespace BookStoreAPI.Interfaces
 
         Task<ServiceResponse<List<CategoryResponseDTO>>> GetAllCategories();
 
-        Task<ServiceResponse<Category>> GetCategoryById(int id);
+        Task<ServiceResponse<CategoryResponseDTO>> GetCategoryById(int id);
 
         Task<ServiceResponse<Category>> UpdateCategory(Category updatedCategory, int id);
 

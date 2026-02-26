@@ -9,5 +9,6 @@ namespace BookStoreAPI.DTOs
         public string Author { get; set; }
         public string Content { get; set; }
         public string CoverLink { get; set; }
+        public string Url { get; set; }
     }
 }

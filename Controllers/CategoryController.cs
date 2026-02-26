@@ -52,7 +52,7 @@ namespace BookStoreAPI.Controllers
         {
             if (id == 0) return BadRequest();
 
-            ServiceResponse<Category> response = await categoryService.GetCategoryById(id);
+            ServiceResponse<CategoryResponseDTO> response = await categoryService.GetCategoryById(id);
 
             if (response.Success == false)
             {
