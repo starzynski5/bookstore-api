@@ -54,6 +54,28 @@ namespace BookStoreAPI.Services
             return response;
         }
 
+        public async Task<ServiceResponse<Book>> GetBookByUrl(string url)
+        {
+            ServiceResponse<Book> response = new ServiceResponse<Book>();
+
+            Book? book = await _context.Books
+                .Where(b => b.Url == url)
+                .FirstOrDefaultAsync();
+
+            if (book == null)
+            {
+                response.Success = false;
+                response.Message = "Book with this url was not found.";
+
+                return response;
+            }
+
+            response.Success = true;
+            response.Data = book;
+
+            return response;
+        }
+
         public async Task<ServiceResponse<BookResponseDto>> CreateBook(CreateBookDTO book)
         {
             ServiceResponse<BookResponseDto> response = new ServiceResponse<BookResponseDto>();

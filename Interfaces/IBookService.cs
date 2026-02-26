@@ -9,6 +9,8 @@ namespace BookStoreAPI.Interfaces
 
         Task<ServiceResponse<Book>> GetBookById(int id);
 
+        Task<ServiceResponse<Book>> GetBookByUrl(string url);
+
         Task<ServiceResponse<BookResponseDto>> CreateBook(CreateBookDTO book);
 
         Task<ServiceResponse<Book>> UpdateBook(CreateBookDTO updatedBook, int id);

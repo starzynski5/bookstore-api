@@ -1,4 +1,5 @@
-﻿using BookStoreAPI.DTOs;
+﻿using Azure;
+using BookStoreAPI.DTOs;
 using BookStoreAPI.Interfaces;
 using BookStoreAPI.Models;
 using Microsoft.AspNetCore.Authorization;
@@ -40,6 +41,23 @@ namespace BookStoreAPI.Controllers
             }
 
             return Ok(response.Data);
+        }
+
+        [HttpGet("url/{url}")]
+        [AllowAnonymous]
+        public async Task<IActionResult> GetBookByUrl(string url)
+        {
+            if (url == null) return BadRequest();
+
+            ServiceResponse<Book> response = await bookService.GetBookByUrl(url);
+
+            if (response.Success == false)
+            {
+                return NotFound(response.Message);
+            }
+
+            return Ok(response.Data);
+
         }
 
         [HttpPost]

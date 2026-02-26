@@ -111,6 +111,22 @@
     "ReturnTypes": []
   },
   {
+    "ContainingType": "BookStoreAPI.Controllers.BookController",
+    "Method": "GetBookByUrl",
+    "RelativePath": "api/Book/url/{url}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "url",
+        "Type": "System.String",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
     "ContainingType": "BookStoreAPI.Controllers.CategoryController",
     "Method": "CreateCategory",
     "RelativePath": "api/Category",
