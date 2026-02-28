@@ -299,5 +299,15 @@
       }
     ],
     "ReturnTypes": []
+  },
+  {
+    "ContainingType": "BookStoreAPI.Controllers.UserController",
+    "Method": "GetAllSubscribedBook",
+    "RelativePath": "api/User/subscriptions",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
   }
 ]

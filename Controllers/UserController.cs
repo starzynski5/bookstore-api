@@ -108,5 +108,29 @@ namespace BookStoreAPI.Controllers
 
             return Ok(response.Message);
         }
+
+        [HttpGet]
+        [Route("subscriptions")]
+        [Authorize]
+        public async Task<IActionResult> GetAllSubscribedBook()
+        {
+            int userId = Int32.Parse(User.Identity.Name);
+
+            if (userId == 0 || userId == null) return BadRequest();
+
+            Console.WriteLine(userId);
+
+            ServiceResponse<List<Book>> response = await userService.GetAllSubscribedBook(userId);
+
+            Console.WriteLine(response);
+
+            if (response.Success == false)
+            {
+                return BadRequest(response.Message);
+            }
+
+            return Ok(response.Data);
+
+        }
     }
 }

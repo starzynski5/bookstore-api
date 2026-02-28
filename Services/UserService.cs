@@ -1,4 +1,5 @@
-﻿using BookStoreAPI.Data;
+﻿using Azure;
+using BookStoreAPI.Data;
 using BookStoreAPI.DTOs;
 using BookStoreAPI.Interfaces;
 using BookStoreAPI.Models;
@@ -193,6 +194,21 @@ namespace BookStoreAPI.Services
 
             return response;
 
+        }
+
+        public async Task<ServiceResponse<List<Book>>> GetAllSubscribedBook(int userId)
+        {
+            ServiceResponse<List<Book>> response = new ServiceResponse<List<Book>>();
+
+            List<Book> subscribedBooks = await _context.UserBooks
+                .Where(ub => ub.UserId == userId)
+                .Include(ub => ub.Book)
+                .Select(ub => ub.Book)
+                .ToListAsync();
+
+            response.Success = true;
+            response.Data = subscribedBooks;
+            return response;
         }
     }
 }
