@@ -18,5 +18,7 @@ namespace BookStoreAPI.Interfaces
         Task<ServiceResponse<string>> SubscribeToBook(int userId, int bookId);
 
         Task<ServiceResponse<List<Book>>> GetAllSubscribedBook(int userId);
+
+        Task<ServiceResponse<string>> UnsubscribeBook(int id, int userId);
     }
 }

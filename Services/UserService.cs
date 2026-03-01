@@ -210,5 +210,31 @@ namespace BookStoreAPI.Services
             response.Data = subscribedBooks;
             return response;
         }
+
+        public async Task<ServiceResponse<string>> UnsubscribeBook(int id, int userId)
+        {
+            ServiceResponse<string> response = new ServiceResponse<string>();
+
+            UserBook relation = await _context.UserBooks
+                .Where(ub => ub.UserId == userId && ub.BookId == id)
+                .FirstOrDefaultAsync();
+
+            if (relation == null)
+            {
+                response.Success = false;
+                response.Message = "Subscription not found.";
+
+                return response;
+            }
+
+            _context.UserBooks.Remove(relation);
+            await _context.SaveChangesAsync();
+
+            response.Success = true;
+            response.Message = "User unsubscribed from book successfully.";
+
+            return response;
+
+        }
     }
 }

@@ -118,11 +118,7 @@ namespace BookStoreAPI.Controllers
 
             if (userId == 0 || userId == null) return BadRequest();
 
-            Console.WriteLine(userId);
-
             ServiceResponse<List<Book>> response = await userService.GetAllSubscribedBook(userId);
-
-            Console.WriteLine(response);
 
             if (response.Success == false)
             {
@@ -131,6 +127,25 @@ namespace BookStoreAPI.Controllers
 
             return Ok(response.Data);
 
+        }
+
+        [HttpPost]
+        [Route("unsubscribe/{id}")]
+        [Authorize]
+        public async Task<IActionResult> UnsubscribeBook(int id)
+        {
+            int userId = Int32.Parse(User.Identity.Name);
+
+            if (userId == 0 || userId == null || id == 0 || id == null) return BadRequest();
+
+            ServiceResponse<string> response = await userService.UnsubscribeBook(id, userId);
+
+            if (response.Success == false)
+            {
+                return BadRequest(response.Message);
+            }
+
+            return Ok(response.Message);
         }
     }
 }

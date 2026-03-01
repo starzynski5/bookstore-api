@@ -11,8 +11,11 @@ using System.Text;
 
 var builder = WebApplication.CreateBuilder(args);
 
-var jwtKey = builder.Configuration["Jwt:Key"] ?? "super_secret_key_12345678900000000000000000000000";
+var jwtKey = builder.Configuration["Jwt:Key"] ?? "super_secret_key_123456789hgdrfgfgfdgfdgfdgfdgfdvdfv00000000000000000000000";
 var key = Encoding.ASCII.GetBytes(jwtKey);
+
+builder.Configuration.GetConnectionString("DefaultConnection");
+
 
 builder.Services.AddScoped<IUserService, UserService>();
 builder.Services.AddScoped<ICategoryService, CategoryService>();
